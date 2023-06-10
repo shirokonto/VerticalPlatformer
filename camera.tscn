@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2p3ioaj5atnw"]
+
+[ext_resource type="Script" path="res://scenes/Camera.gd" id="1_moo38"]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(227, 308)
+script = ExtResource("1_moo38")
+player_path = NodePath("../Player")

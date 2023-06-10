@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://det402xuipu8b"]
+[gd_scene load_steps=7 format=3 uid="uid://det402xuipu8b"]
 
 [ext_resource type="PackedScene" uid="uid://bd74qd5i3omkj" path="res://scenes/player.tscn" id="1_7gs71"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_oitcm"]
 [ext_resource type="Texture2D" uid="uid://tpcft0rwdfp5" path="res://art/Sprite-Space Nebula.png" id="2_fib0c"]
 [ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
+[ext_resource type="PackedScene" uid="uid://b2p3ioaj5atnw" path="res://camera.tscn" id="3_q3whi"]
 [ext_resource type="Texture2D" uid="uid://btypmw65was02" path="res://art/Sprite-Space Stars.png" id="5_8mgqq"]
 
 [node name="World" type="Node"]
@@ -15,8 +16,15 @@ JUMP_HEIGHT = 100.0
 JUMP_TIME_TO_PEEK = 0.2
 JUMP_TIME_TO_DESCENT = 0.4
 
+[node name="Camera2D" parent="Player" instance=ExtResource("3_q3whi")]
+position = Vector2(0, 5)
+player_path = NodePath("..")
+
 [node name="Platform" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
 position = Vector2(229, 426)
+
+[node name="Platform2" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
+position = Vector2(333, 218)
 
 [node name="Areas" type="Node2D" parent="."]
 
@@ -39,9 +47,3 @@ scale = Vector2(4, 4)
 texture = ExtResource("5_8mgqq")
 centered = false
 offset = Vector2(0.143, 0)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(227, 308)
-
-[node name="StaticBody2D" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
-position = Vector2(232, 218)
