@@ -16,21 +16,24 @@ JUMP_HEIGHT = 100.0
 JUMP_TIME_TO_PEEK = 0.2
 JUMP_TIME_TO_DESCENT = 0.4
 
-[node name="Camera2D" parent="Player" instance=ExtResource("3_q3whi")]
-position = Vector2(0, 5)
-player_path = NodePath("..")
-
 [node name="Platform" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
 position = Vector2(229, 426)
 
 [node name="Platform2" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
 position = Vector2(333, 218)
 
+[node name="Platform3" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
+position = Vector2(131, -71)
+
 [node name="Areas" type="Node2D" parent="."]
+
+[node name="Camera2D" parent="." instance=ExtResource("3_q3whi")]
+position = Vector2(240, 353)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-276, -249)
 motion_mirroring = Vector2(480, 720)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
