@@ -1,34 +1,35 @@
 [gd_scene load_steps=7 format=3 uid="uid://det402xuipu8b"]
 
 [ext_resource type="PackedScene" uid="uid://bd74qd5i3omkj" path="res://scenes/player.tscn" id="1_7gs71"]
-[ext_resource type="Script" path="res://scenes/world.gd" id="1_oitcm"]
+[ext_resource type="Script" path="res://src/world.gd" id="1_ao5yx"]
 [ext_resource type="Texture2D" uid="uid://tpcft0rwdfp5" path="res://art/Sprite-Space Nebula.png" id="2_fib0c"]
 [ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
 [ext_resource type="PackedScene" uid="uid://b2p3ioaj5atnw" path="res://camera.tscn" id="3_q3whi"]
 [ext_resource type="Texture2D" uid="uid://btypmw65was02" path="res://art/Sprite-Space Stars.png" id="5_8mgqq"]
 
 [node name="World" type="Node"]
-script = ExtResource("1_oitcm")
+script = ExtResource("1_ao5yx")
 
 [node name="Player" parent="." instance=ExtResource("1_7gs71")]
-position = Vector2(227, 303)
 JUMP_HEIGHT = 100.0
 JUMP_TIME_TO_PEEK = 0.2
 JUMP_TIME_TO_DESCENT = 0.4
 
-[node name="Platform" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
-position = Vector2(229, 426)
+[node name="Platform" parent="." instance=ExtResource("3_ano2p")]
+position = Vector2(2, 123)
 
-[node name="Platform2" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
+[node name="Platform2" parent="." instance=ExtResource("3_ano2p")]
+visible = false
 position = Vector2(333, 218)
 
-[node name="Platform3" parent="." groups=["Paddles"] instance=ExtResource("3_ano2p")]
+[node name="Platform3" parent="." instance=ExtResource("3_ano2p")]
+visible = false
 position = Vector2(131, -71)
 
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="Camera2D" parent="." instance=ExtResource("3_q3whi")]
-position = Vector2(240, 353)
+position = Vector2(13, 50)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -42,6 +43,7 @@ offset_bottom = 40.0
 scale = Vector2(2.68, 4)
 texture = ExtResource("2_fib0c")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 
