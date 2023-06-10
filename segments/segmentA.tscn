@@ -1,7 +1,16 @@
-[gd_scene format=3 uid="uid://83h1m0wxctv1"]
+[gd_scene load_steps=3 format=3 uid="uid://83h1m0wxctv1"]
+
+[ext_resource type="Texture2D" uid="uid://n8arfu3ab15l" path="res://icon.svg" id="1_b5owr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upis8"]
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(54, 439)
-polygon = PackedVector2Array(29, 15, 151.781, -15.5045, 190, -25, 413, -24, 80, 69, 151, 25)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.12, 0.2)
+texture = ExtResource("1_b5owr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Paddles"]]
+position = Vector2(0, -10)
+scale = Vector2(7.12, 0.2)
+shape = SubResource("RectangleShape2D_upis8")
