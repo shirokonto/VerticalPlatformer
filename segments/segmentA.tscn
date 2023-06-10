@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://83h1m0wxctv1"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(54, 439)
+polygon = PackedVector2Array(29, 15, 151.781, -15.5045, 190, -25, 413, -24, 80, 69, 151, 25)

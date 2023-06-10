@@ -1,14 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://det402xuipu8b"]
+[gd_scene load_steps=5 format=3 uid="uid://det402xuipu8b"]
 
 [ext_resource type="PackedScene" uid="uid://bd74qd5i3omkj" path="res://scenes/player.tscn" id="1_7gs71"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_oitcm"]
+[ext_resource type="Texture2D" uid="uid://tpcft0rwdfp5" path="res://art/Sprite-Space Nebula.png" id="2_fib0c"]
+[ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node"]
+script = ExtResource("1_oitcm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fib0c")
 
 [node name="Player" parent="." instance=ExtResource("1_7gs71")]
 position = Vector2(227, 303)
+JUMP_HEIGHT = 100.0
+JUMP_TIME_TO_PEEK = 0.2
+JUMP_TIME_TO_DESCENT = 0.4
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" parent="." instance=ExtResource("3_ano2p")]
+position = Vector2(-98, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(54, 439)
-polygon = PackedVector2Array(29, 15, 151.781, -15.5045, 190, -25, 374, 47, 80, 69, 151, 25)
+[node name="Areas" type="Node2D" parent="."]

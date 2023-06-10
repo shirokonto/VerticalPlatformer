@@ -5,45 +5,39 @@
 [sub_resource type="GDScript" id="GDScript_4f0av"]
 script/source = "extends CharacterBody2D
 
-@export var MAX_SPEED = 300
-@export var ACCELERATION = 1500
-@export var FRICTION = 1200
+@export var MOVE_SPEED = 200
+@export var JUMP_HEIGHT : float
+@export var JUMP_TIME_TO_PEEK : float
+@export var JUMP_TIME_TO_DESCENT : float
 
-@onready var axis = Vector2.ZERO
+@onready var JUMP_VELOCITY : float = ((2.0 * JUMP_HEIGHT) / JUMP_TIME_TO_PEEK) * -1.0
+@onready var JUMP_GRAVITY : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEEK * JUMP_TIME_TO_PEEK)) * -1.0
+@onready var FALL_GRAVITY : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEEK * JUMP_TIME_TO_DESCENT)) * -1.0
 
-# const SPEED = 300.0
-# const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-# var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+var veocity := Vector2.ZERO
 
 func _physics_process(delta):
-	move(delta)
-
-func get_input_axis():
-	axis = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
-	return axis.normalized()
+	velocity.y += get_gravity() * delta
+	velocity.x = get_input_velocity() * MOVE_SPEED
 	
-func move(delta):
-	axis = get_input_axis()
-	
-	if axis == Vector2.ZERO:
-		apply_friction(FRICTION * delta)
-	else:
-		apply_movement(axis * ACCELERATION * delta)
-		
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		jump()
 	move_and_slide()
 
+func get_gravity() -> float:
+	return JUMP_GRAVITY if velocity.y < 0.0 else FALL_GRAVITY
 
-func apply_friction(amount):
-	if velocity.length() > amount:
-		velocity -= velocity.normalized() * amount
-	else:
-		velocity = Vector2.ZERO
-		
-func apply_movement(accel):
-	velocity += accel
-	velocity = velocity.limit_length(MAX_SPEED)
+func jump():
+	velocity.y = JUMP_VELOCITY
+	
+func get_input_velocity() -> float:
+	var horizontal:= 0.0
+	
+	if Input.is_action_pressed(\"move_left\"):
+		horizontal -= 1.0
+	if Input.is_action_pressed(\"move_right\"):
+		horizontal += 1.0
+	return horizontal
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7epn"]
@@ -60,3 +54,8 @@ shape = SubResource("CapsuleShape2D_g7epn")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2khe4")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 40)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
