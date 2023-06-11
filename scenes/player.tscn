@@ -16,9 +16,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2khe4")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(0, 40)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+visible = false
 
 [node name="Area2D" type="Area2D" parent="."]
 

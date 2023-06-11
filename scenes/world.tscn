@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://det402xuipu8b"]
+[gd_scene load_steps=8 format=3 uid="uid://det402xuipu8b"]
 
 [ext_resource type="PackedScene" uid="uid://bd74qd5i3omkj" path="res://scenes/player.tscn" id="1_7gs71"]
 [ext_resource type="Script" path="res://src/world.gd" id="1_ao5yx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
 [ext_resource type="PackedScene" uid="uid://b2p3ioaj5atnw" path="res://camera.tscn" id="3_q3whi"]
 [ext_resource type="Texture2D" uid="uid://btypmw65was02" path="res://art/Sprite-Space Stars.png" id="5_8mgqq"]
+[ext_resource type="PackedScene" uid="uid://bsg0a02k8gs3r" path="res://scenes/hud.tscn" id="7_sd6gr"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_ao5yx")
@@ -24,7 +25,6 @@ visible = false
 position = Vector2(333, 218)
 
 [node name="Platform3" parent="." instance=ExtResource("3_ano2p")]
-visible = false
 position = Vector2(131, -71)
 
 [node name="Areas" type="Node2D" parent="."]
@@ -53,3 +53,18 @@ scale = Vector2(4, 4)
 texture = ExtResource("5_8mgqq")
 centered = false
 offset = Vector2(0.143, 0)
+
+[node name="HUD" parent="." instance=ExtResource("7_sd6gr")]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

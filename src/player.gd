@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal hit
+
 @export var MOVE_SPEED = 200
 @export var JUMP_HEIGHT : float
 @export var JUMP_TIME_TO_PEEK : float
@@ -16,9 +18,16 @@ var camera
 var width
 
 func _ready():
+	velocity = Vector2.ZERO
 	camera = get_node(CAMERA_PATH)
 	width = get_viewport_rect().size.x
 	sprite = get_node("Sprite2D")
+	
+func start(pos):
+	camera.global_position = pos
+	position = pos
+	show()
+	$Area2D/CollisionShape2D.disabled = false
 
 func _physics_process(delta):
 	velocity.y += get_gravity() * delta
@@ -48,14 +57,13 @@ func get_input_velocity() -> float:
 func _on_collision(body):
 	if body.is_in_group('Paddles') and get_real_velocity().y > 0:
 		set_velocity(Vector2(0, -jump_speed))
-	pass
-
 
 func _on_exit_screen():
 	if global_transform.origin.x > camera.global_position.x and velocity.x > 0:
 		set_position(Vector2(-width/2, global_position.y))
 	if global_transform.origin.x < camera.global_position.x and velocity.x < 0:
 		set_position(Vector2(width/2, global_position.y))
-	if global_transform.origin.y < camera.global_position.y:
-		# trigger game over
-		pass
+	if global_position.y < get_viewport_rect().size.y:
+		hide()	
+		hit.emit()
+		$Area2D/CollisionShape2D.set_deferred("disabled", true)
