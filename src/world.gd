@@ -8,6 +8,9 @@ var segments = [
 var segment = preload("res://segments/segmentA.tscn")
 var width
 var speed = 200
+var minDistance = 200
+var spaceRange = 50
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +21,7 @@ func _ready():
 		var new_platform = segment.instantiate()
 		new_platform.global_position = Vector2(randf_range(-width/2, width/2),y)
 		add_child(new_platform)
-		y-= randf_range(0, 210) # modify so x is between a fixed set 
+		y-= randf_range(minDistance, minDistance + spaceRange)
 	# randomize()
 	# spawn_inst(0,0)
 	
