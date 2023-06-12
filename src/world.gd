@@ -1,5 +1,6 @@
 extends Node
 
+@onready var player = $Player
 var segments = [
 	preload("res://segments/segmentA.tscn"),
 	# preload("res://segments/segmentB.tscn")
@@ -13,11 +14,25 @@ var speed = 200
 var minDistance = 200
 var spaceRange = 50
 var score
+var y = 0
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	width = get_viewport().get_visible_rect().size.x
+	randomize()
+	
+	
+	# randomize()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	for area in $Areas.get_children():
 		area.position.y -= speed * delta
+	while player.position.y - y < 1000:
+		print("new platform at y: " + str(y))
+		var new_platform = segment.instantiate()
+		new_platform.global_position = Vector2(randf_range(-width/2, width/2),y)
+		add_child(new_platform)
+		y-= randf_range(50, 210) # modify so x is between a fixed set 
 		
 func spawn_inst(x,y):
 	var inst = segments[randi() % len(segments)].instantiate()

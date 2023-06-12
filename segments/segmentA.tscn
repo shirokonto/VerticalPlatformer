@@ -1,16 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://83h1m0wxctv1"]
+[gd_scene load_steps=4 format=3 uid="uid://83h1m0wxctv1"]
 
-[ext_resource type="Texture2D" uid="uid://n8arfu3ab15l" path="res://icon.svg" id="1_b5owr"]
+[ext_resource type="Script" path="res://segments/segmentA.gd" id="1_xr87g"]
+[ext_resource type="Texture2D" uid="uid://814oysrvrur3" path="res://art/Sprite-Plattform_Still.png" id="2_gvjp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upis8"]
 
 [node name="StaticBody2D" type="StaticBody2D" groups=["Paddles"]]
+script = ExtResource("1_xr87g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.12, 0.2)
-texture = ExtResource("1_b5owr")
+texture_filter = 1
+scale = Vector2(2.222, 2.222)
+texture = ExtResource("2_gvjp5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -7)
 scale = Vector2(7.12, 0.2)
 shape = SubResource("RectangleShape2D_upis8")

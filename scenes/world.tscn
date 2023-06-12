@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
 [ext_resource type="PackedScene" uid="uid://b2p3ioaj5atnw" path="res://camera.tscn" id="3_q3whi"]
 [ext_resource type="Texture2D" uid="uid://btypmw65was02" path="res://art/Sprite-Space Stars.png" id="5_8mgqq"]
-[ext_resource type="PackedScene" uid="uid://bsg0a02k8gs3r" path="res://scenes/hud.tscn" id="7_sd6gr"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="7_sd6gr"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_ao5yx")
 
 [node name="Player" parent="." instance=ExtResource("1_7gs71")]
-JUMP_HEIGHT = 100.0
+JUMP_HEIGHT = 130.0
 JUMP_TIME_TO_PEEK = 0.2
 JUMP_TIME_TO_DESCENT = 0.4
 CAMERA_PATH = NodePath("../Camera2D")
@@ -34,25 +34,34 @@ position = Vector2(13, 50)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-276, -249)
-motion_mirroring = Vector2(480, 720)
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(2.68, 4)
-texture = ExtResource("2_fib0c")
-stretch_mode = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 scale = Vector2(4, 4)
 texture = ExtResource("5_8mgqq")
 centered = false
 offset = Vector2(0.143, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(540, 540)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+texture = ExtResource("2_fib0c")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_fib0c")
+centered = false
 
 [node name="HUD" parent="." instance=ExtResource("7_sd6gr")]
 
