@@ -40,17 +40,22 @@ func spawn_inst(x,y):
 	$Areas.add_child(inst)
 
 func new_game():
+	get_tree().call_group("Paddles", "queue_free")
 	width = get_viewport().get_visible_rect().size.x
 	randomize()
-	var y = 0
-	while y > -3000:
-		var new_platform = segment.instantiate()
-		new_platform.global_position = Vector2(randf_range(-width/2, width/2),y)
-		add_child(new_platform)
-		y-= randf_range(minDistance, minDistance + spaceRange)
+	
+#	while y > -3000:
+#		var new_platform = segment.instantiate()
+#		new_platform.global_position = Vector2(randf_range(-width/2, width/2),y)
+#		add_child(new_platform)
+#		y-= randf_range(minDistance, minDistance + spaceRange)
 	score = 0
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	var start_plattfrom = segment.instantiate()
+	start_plattfrom.global_position = Vector2($StartPosition.position.x, $StartPosition.position.y + 100)
+	add_child(start_plattfrom)
+	y = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 

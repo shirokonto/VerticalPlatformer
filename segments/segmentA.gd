@@ -16,3 +16,7 @@ func _physics_process(delta):
 	if is_moving:
 		global_position = Vector2(global_position.x + sin(time) ,global_position.y)
 	pass
+
+
+func _screen_exited():
+	queue_free()

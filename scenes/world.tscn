@@ -18,7 +18,7 @@ JUMP_TIME_TO_DESCENT = 0.4
 CAMERA_PATH = NodePath("../Camera2D")
 
 [node name="Platform" parent="." instance=ExtResource("3_ano2p")]
-position = Vector2(2, 123)
+position = Vector2(0, 123)
 
 [node name="Platform2" parent="." instance=ExtResource("3_ano2p")]
 visible = false
