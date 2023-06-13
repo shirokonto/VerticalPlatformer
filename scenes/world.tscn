@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
 [ext_resource type="PackedScene" uid="uid://b2p3ioaj5atnw" path="res://camera.tscn" id="3_q3whi"]
 [ext_resource type="Texture2D" uid="uid://btypmw65was02" path="res://art/Sprite-Space Stars.png" id="5_8mgqq"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="7_sd6gr"]
+[ext_resource type="PackedScene" uid="uid://bsg0a02k8gs3r" path="res://scenes/hud.tscn" id="7_sd6gr"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_ao5yx")
@@ -45,7 +45,7 @@ offset = Vector2(0.143, 0)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(540, 540)
+motion_mirroring = Vector2(720, 720)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
@@ -59,7 +59,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 texture = ExtResource("2_fib0c")
 centered = false
 

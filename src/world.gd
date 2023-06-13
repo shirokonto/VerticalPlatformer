@@ -15,20 +15,17 @@ var minDistance = 200
 var spaceRange = 50
 var score
 var y = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	width = get_viewport().get_visible_rect().size.x
 	randomize()
 	
-	
-	# randomize()
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	for area in $Areas.get_children():
 		area.position.y -= speed * delta
-	while player.position.y - y < 1000:
-		print("new platform at y: " + str(y))
+	while player.position.y - y < 1000:		
 		var new_platform = segment.instantiate()
 		new_platform.global_position = Vector2(randf_range(-width/2, width/2),y)
 		add_child(new_platform)
@@ -44,11 +41,6 @@ func new_game():
 	width = get_viewport().get_visible_rect().size.x
 	randomize()
 	
-#	while y > -3000:
-#		var new_platform = segment.instantiate()
-#		new_platform.global_position = Vector2(randf_range(-width/2, width/2),y)
-#		add_child(new_platform)
-#		y-= randf_range(minDistance, minDistance + spaceRange)
 	score = 0
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")

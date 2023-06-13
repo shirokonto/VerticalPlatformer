@@ -3,56 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://n8arfu3ab15l" path="res://icon.svg" id="1_2khe4"]
 [ext_resource type="Script" path="res://src/player.gd" id="1_o4ngr"]
 
-[sub_resource type="GDScript" id="GDScript_4f0av"]
-script/source = "extends CharacterBody2D
-
-@export var MOVE_SPEED = 400
-@export var JUMP_HEIGHT : float
-@export var JUMP_TIME_TO_PEEK : float
-@export var JUMP_TIME_TO_DESCENT : float
-
-@onready var JUMP_VELOCITY : float = ((2.0 * JUMP_HEIGHT) / JUMP_TIME_TO_PEEK) * -1.0
-@onready var JUMP_GRAVITY : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEEK * JUMP_TIME_TO_PEEK)) * -1.0
-@onready var FALL_GRAVITY : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEEK * JUMP_TIME_TO_DESCENT)) * -1.0
-
-var veocity := Vector2.ZERO
-var jump_speed = 2000
-var sprite
-
-func _ready():
-	sprite = get_node(\"Sprite2D\")
-
-func _physics_process(delta):
-	velocity.y += get_gravity() * delta
-	velocity.x = get_input_velocity() * MOVE_SPEED
-	
-	#if (Input.is_action_just_pressed(\"jump\") or Input.is_action_just_pressed(\"move_up\")) and is_on_floor():
-	#	jump()
-	move_and_slide()
-
-func get_gravity() -> float:
-	return JUMP_GRAVITY if velocity.y < 0.0 else FALL_GRAVITY
-
-func jump():
-	velocity.y = JUMP_VELOCITY
-	
-func get_input_velocity() -> float:
-	var horizontal:= 0.0
-	
-	if Input.is_action_pressed(\"move_left\"):
-		horizontal -= 1.0
-		sprite.set_flip_h(true)
-	if Input.is_action_pressed(\"move_right\"):
-		horizontal += 1.0
-		sprite.set_flip_h(false)
-	return horizontal
-	
-func _on_collision(body):
-	if body.is_in_group('Paddles') and get_real_velocity().y > 0:
-		set_velocity(Vector2(0, -jump_speed))
-	pass
-"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7epn"]
 radius = 29.0
 height = 62.0
