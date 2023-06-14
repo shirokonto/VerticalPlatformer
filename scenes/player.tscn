@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd74qd5i3omkj"]
 
-[ext_resource type="Texture2D" uid="uid://n8arfu3ab15l" path="res://icon.svg" id="1_2khe4"]
 [ext_resource type="Script" path="res://src/player.gd" id="1_o4ngr"]
+[ext_resource type="Texture2D" uid="uid://8mqwqi05gplj" path="res://art/Sprite-Astronaut.png" id="2_2emaa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7epn"]
 radius = 29.0
@@ -12,8 +12,9 @@ script = ExtResource("1_o4ngr")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_2khe4")
+texture_filter = 1
+scale = Vector2(2.194, 2.194)
+texture = ExtResource("2_2emaa")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false

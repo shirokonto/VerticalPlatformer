@@ -1,10 +1,12 @@
 extends StaticBody2D
 
+@onready var sprite = get_node("Sprite2D")
+
 var time : float
 var is_moving : bool
-@onready var sprite = get_node("Sprite2D")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	is_moving = true if (randi_range(1,3) % 2) == 0 else false  # set random platform type 1 static 2 moving
 	if is_moving && sprite != null:
 		sprite.texture = load("res://art/Sprite-Plattform_Moving.png")
@@ -19,4 +21,4 @@ func _physics_process(delta):
 
 
 func _screen_exited():
-	queue_free()
+		queue_free()
