@@ -8,6 +8,7 @@ signal hit
 @export var JUMP_TIME_TO_DESCENT : float
 @export var CAMERA_PATH : NodePath
 
+@onready var JUMP_VELOCITY : float = ((2.0 * JUMP_HEIGHT) / JUMP_TIME_TO_PEEK) * -1.0
 @onready var JUMP_GRAVITY : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEEK * JUMP_TIME_TO_PEEK)) * -1.0
 @onready var FALL_GRAVITY : float = ((-2.0 * JUMP_HEIGHT) / (JUMP_TIME_TO_PEEK * JUMP_TIME_TO_DESCENT)) * -1.0
 
@@ -36,6 +37,9 @@ func _physics_process(delta):
 
 func get_gravity() -> float:
 	return JUMP_GRAVITY if velocity.y < 0.0 else FALL_GRAVITY
+
+func jump():
+	velocity.y = JUMP_VELOCITY
 	
 func get_input_velocity() -> float:
 	var horizontal:= 0.0
@@ -53,17 +57,13 @@ func _on_collision(body):
 		set_velocity(Vector2(0, -jump_speed))
 
 func _on_exit_screen():
-	print("global pos: ")
-	print(global_transform.origin.x)
-	print("camera pos: ")
-	print(camera.global_position.x)
-	if global_transform.origin.x > camera.global_position.x and velocity.x > 0:
-		print(Vector2(-width/2, global_position.y))
+	if global_position.x > camera.global_position.x and velocity.x > 0:
 		set_position(Vector2(-width/2, global_position.y))
-	if global_transform.origin.x < camera.global_position.x and velocity.x < 0:
-		print(Vector2(width/2, global_position.y))
+	if global_position.x < camera.global_position.x and velocity.x < 0:
 		set_position(Vector2(width/2, global_position.y))
-	if global_position.y < get_viewport_rect().size.y:
+	
+	if position.y +31 > camera.global_position.y + get_viewport_rect().size.y/2:
+		print("dead")
 		hide()	
 		hit.emit()
 		$Area2D/CollisionShape2D.set_deferred("disabled", true)
