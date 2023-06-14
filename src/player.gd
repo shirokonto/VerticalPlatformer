@@ -17,13 +17,15 @@ var sprite
 var camera
 var width
 
-func _ready():
+func _ready():	
 	velocity = Vector2.ZERO
 	camera = get_node(CAMERA_PATH)
 	width = get_viewport_rect().size.x
 	sprite = get_node("Sprite2D")
+	get_tree().paused = true
 	
 func start(pos):
+	get_tree().paused = false
 	camera.global_position = pos
 	position = pos
 	show()

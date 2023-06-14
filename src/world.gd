@@ -20,6 +20,7 @@ var y = 0
 func _ready():
 	width = get_viewport().get_visible_rect().size.x
 	randomize()
+	get_tree().paused = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

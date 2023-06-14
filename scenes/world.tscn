@@ -54,7 +54,6 @@ texture = ExtResource("2_fib0c")
 centered = false
 
 [node name="HUD" parent="." instance=ExtResource("7_sd6gr")]
-visible = false
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
