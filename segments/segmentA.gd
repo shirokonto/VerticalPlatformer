@@ -11,6 +11,8 @@ func _ready():
 	if is_moving && sprite != null:
 		sprite.texture = load("res://art/Sprite-Plattform_Moving.png")
 
+func _enableCollision():
+	$CollisionShape2D.disabled = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -21,4 +23,4 @@ func _physics_process(delta):
 
 
 func _screen_exited():
-		queue_free()
+	queue_free()

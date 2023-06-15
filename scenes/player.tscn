@@ -8,11 +8,11 @@ radius = 29.0
 height = 62.0
 
 [node name="Player" type="CharacterBody2D"]
+texture_filter = 1
 script = ExtResource("1_o4ngr")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
 scale = Vector2(2.194, 2.194)
 texture = ExtResource("2_2emaa")
 
