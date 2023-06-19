@@ -21,16 +21,11 @@ func _ready():
 	width = get_viewport_rect().size.x
 	get_tree().paused = true
 	
-func start(pos):
+func start(pos):	
+	position = pos	
+	$Area2D/CollisionShape2D.disabled = false	
 	camera.global_position = pos
 	show()
-	print("start camera.global_position: " + str(camera.global_position))
-
-	print("after camera.global_position: " + str(camera.global_position))
-	print("start player position: " + str(position))
-	position = pos
-	print("after player position: " + str(position))
-	$Area2D/CollisionShape2D.disabled = false
 
 func _physics_process(delta):
 	velocity.y += get_gravity() * delta
@@ -59,9 +54,6 @@ func _on_exit_screen():
 		set_position(Vector2(width/2, global_position.y))
 	
 	if position.y > camera.global_position.y + get_viewport_rect().size.y/2:
-		print("dead")
-		print("death position: " + str(position))
-		print("###########")
 		#hide()	
 		hit.emit()
 		#$Area2D/CollisionShape2D.set_deferred("disabled", true)
