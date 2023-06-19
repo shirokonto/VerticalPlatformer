@@ -16,13 +16,6 @@ metadata/_edit_group_ = true
 scale = Vector2(2.194, 2.194)
 texture = ExtResource("2_2emaa")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-target_position = Vector2(0, 40)
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-visible = false
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

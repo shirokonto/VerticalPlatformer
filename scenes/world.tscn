@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://det402xuipu8b"]
+[gd_scene load_steps=7 format=3 uid="uid://det402xuipu8b"]
 
 [ext_resource type="PackedScene" uid="uid://bd74qd5i3omkj" path="res://scenes/player.tscn" id="1_7gs71"]
 [ext_resource type="Script" path="res://src/world.gd" id="1_ao5yx"]
 [ext_resource type="Texture2D" uid="uid://tpcft0rwdfp5" path="res://art/Sprite-Space Nebula.png" id="2_fib0c"]
-[ext_resource type="PackedScene" uid="uid://83h1m0wxctv1" path="res://segments/segmentA.tscn" id="3_ano2p"]
 [ext_resource type="PackedScene" uid="uid://b2p3ioaj5atnw" path="res://camera.tscn" id="3_q3whi"]
 [ext_resource type="Texture2D" uid="uid://btypmw65was02" path="res://art/Sprite-Space Stars.png" id="5_8mgqq"]
 [ext_resource type="PackedScene" uid="uid://bsg0a02k8gs3r" path="res://scenes/hud.tscn" id="7_sd6gr"]
@@ -16,14 +15,6 @@ JUMP_HEIGHT = 130.0
 JUMP_TIME_TO_PEEK = 0.2
 JUMP_TIME_TO_DESCENT = 0.4
 CAMERA_PATH = NodePath("../Camera2D")
-
-[node name="Platform" parent="." instance=ExtResource("3_ano2p")]
-visible = false
-position = Vector2(0, 123)
-
-[node name="Platform3" parent="." instance=ExtResource("3_ano2p")]
-visible = false
-position = Vector2(131, -71)
 
 [node name="Areas" type="Node2D" parent="."]
 
